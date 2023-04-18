@@ -11,7 +11,7 @@ import {
 
 import {fontsColor, fontWeight} from '../../theme';
 
-export const Input = () => {
+export const CommentInput = () => {
   const [comment, setComment] = useState('');
 
   return (

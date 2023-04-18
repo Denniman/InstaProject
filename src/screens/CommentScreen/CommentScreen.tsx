@@ -3,8 +3,7 @@ import React from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 
 import {comments} from '../../config';
-import {Comments} from '../../components/Comments';
-import {Input} from '../../components/Input';
+import {CommentInput, Comments} from '../../components';
 
 export const CommentScreen = () => {
   return (
@@ -15,7 +14,7 @@ export const CommentScreen = () => {
         renderItem={({item}) => <Comments {...item} includeDetails />}
         style={{padding: 5}}
       />
-      <Input />
+      <CommentInput />
     </View>
   );
 };
