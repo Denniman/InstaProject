@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
-import {Button} from './src/components';
+import {PostUploadScreen} from './src/screens';
 
 function App(): JSX.Element {
   return (
     <View style={styles.app}>
-      <Button text="Testing!!" />
+      <PostUploadScreen />
     </View>
   );
 }
