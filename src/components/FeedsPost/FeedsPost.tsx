@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import Feather from 'react-native-vector-icons/Feather';
@@ -19,9 +20,10 @@ interface FeedPostProps extends IFeedPost {
 }
 
 export const FeedsPost: React.FC<FeedPostProps> = ({
-  images,
+  id,
   likes,
   video,
+  images,
   isVisible,
   comments,
   userName,
@@ -31,6 +33,7 @@ export const FeedsPost: React.FC<FeedPostProps> = ({
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isDescripExpanded, setIsDescripExpanded] = useState(false);
+  const navigation = useNavigation<any>();
 
   const displayImage = images && images[0];
 
@@ -38,7 +41,11 @@ export const FeedsPost: React.FC<FeedPostProps> = ({
     <View style={styles.container}>
       <View style={styles.header}>
         <Image source={{uri: userImage}} style={styles.userAvatar} />
-        <Text style={styles.userName}>{userName}</Text>
+        <Text
+          style={styles.userName}
+          onPress={() => navigation.navigate('Profile', {userId: id})}>
+          {userName}
+        </Text>
         <Entypo
           name="dots-three-horizontal"
           size={16}

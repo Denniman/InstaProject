@@ -1,20 +1,9 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
 
-import {PostUploadScreen} from './src/screens';
+import Navigation from './src/navigation';
 
 function App(): JSX.Element {
-  return (
-    <View style={styles.app}>
-      <PostUploadScreen />
-    </View>
-  );
+  return <Navigation />;
 }
-
-const styles = StyleSheet.create({
-  app: {
-    flex: 1,
-  },
-});
 
 export default App;
