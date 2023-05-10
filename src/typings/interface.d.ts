@@ -1,6 +1,6 @@
 import {RouteProp} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export type RootNavigator = {
   Home: undefined;
@@ -10,13 +10,13 @@ export type RootNavigator = {
 export type IBottomTabsNavigator = {
   HomeStack: undefined;
   Upload: undefined;
-  'My Profile': undefined;
+  MyProfile: undefined;
   Notification: undefined;
 };
 
 export type IHomeStackNavigator = {
   Feed: undefined;
-  Profile: {userId?: string};
+  UserProfile: {userId?: string};
 };
 
 export type IProfileStackNavigator = {
@@ -36,17 +36,17 @@ export type ProfileNavigationProps = NativeStackNavigationProp<
 
 export type UserProfileNavigationProps = NativeStackNavigationProp<
   IHomeStackNavigator,
-  'Profile'
+  'UserProfile'
 >;
 
-export type MyUserProfileNavigationProps = BottomTabNavigationProp<
+export type MyProfileNavigationProps = BottomTabNavigationProp<
   IBottomTabsNavigator,
-  'My Profile'
+  'MyProfile'
 >;
 
-export type UserProfileRouteProps = RouteProp<IHomeStackNavigator, 'Profile'>;
-
-export type UserProfileNavigationRouteProps = RouteProp<
-  IBottomTabsNavigator,
-  'My Profile'
+export type UserProfileRouteProps = RouteProp<
+  IHomeStackNavigator,
+  'UserProfile'
 >;
+
+export type MyProfileRouteProps = RouteProp<IBottomTabsNavigator, 'MyProfile'>;

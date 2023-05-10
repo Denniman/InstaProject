@@ -9,12 +9,12 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {styles} from './styles';
 import {Comments} from '../Comments';
-import {VideoPlayer} from '../VideoPlayer';
 import {Carousel} from '../Carousel';
 import {DoublePress} from '../../hooks';
-import {IFeedPost} from '../../types/models';
+import {VideoPlayer} from '../VideoPlayer';
+
 import {fontWeight, fontsColor} from '../../theme';
-import {FeedNavigationProps} from '../../navigation/interface';
+import {FeedNavigationProps, IFeedPost} from '../../typings';
 
 interface FeedPostProps extends IFeedPost {
   isVisible: boolean;
@@ -49,7 +49,7 @@ export const FeedsPost: React.FC<FeedPostProps> = ({
         <Image source={{uri: userImage}} style={styles.userAvatar} />
         <Text
           style={styles.userName}
-          onPress={() => navigation.navigate('Profile', {userId: id})}>
+          onPress={() => navigation.navigate('UserProfile', {userId: id})}>
           {userName}
         </Text>
         <Entypo

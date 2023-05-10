@@ -1,15 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 import {FlatList} from 'react-native';
-import React from 'react';
+import React, {ComponentType} from 'react';
 
-import {IPost} from '../../types/models';
+import {IPost} from '../../typings';
 
 import {FeedGridImage} from './FeedGridImage';
 
 interface IFeedGridView {
   data: IPost[];
   ListHeaderComponent:
-    | React.ComponentType<any>
+    | ComponentType<any>
     | React.ReactElement
     | null
     | undefined;
