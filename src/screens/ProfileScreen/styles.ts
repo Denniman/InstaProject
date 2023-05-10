@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
   },
   statsHeader: {
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: fontWeight.bold,
   },
   name: {

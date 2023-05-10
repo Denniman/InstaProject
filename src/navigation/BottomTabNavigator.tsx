@@ -5,10 +5,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {ProfileScreen, PostUploadScreen} from '../screens';
+import {PostUploadScreen} from '../screens';
+import {IBottomTabsNavigator} from './interface';
 import HomeStackNavigator from './HomeStackNavigator';
+import ProfileStackNavigator from './ProfileStackNavigator';
 
-const Tabs = createBottomTabNavigator();
+const Tabs = createBottomTabNavigator<IBottomTabsNavigator>();
 const BottomTabNavigator = () => {
   return (
     <Tabs.Navigator screenOptions={{tabBarShowLabel: false}}>
@@ -38,7 +40,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tabs.Screen
-        name="notification"
+        name="Notification"
         component={PostUploadScreen}
         options={{
           headerShown: false,
@@ -50,8 +52,9 @@ const BottomTabNavigator = () => {
 
       <Tabs.Screen
         name="My Profile"
-        component={ProfileScreen}
+        component={ProfileStackNavigator}
         options={{
+          headerShown: false,
           tabBarLabel: 'Profile',
           tabBarIcon: ({size, color}) => (
             <FontAwesome name="user-circle-o" size={size} color={color} />

@@ -14,6 +14,7 @@ import {Carousel} from '../Carousel';
 import {DoublePress} from '../../hooks';
 import {IFeedPost} from '../../types/models';
 import {fontWeight, fontsColor} from '../../theme';
+import {FeedNavigationProps} from '../../navigation/interface';
 
 interface FeedPostProps extends IFeedPost {
   isVisible: boolean;
@@ -33,9 +34,14 @@ export const FeedsPost: React.FC<FeedPostProps> = ({
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isDescripExpanded, setIsDescripExpanded] = useState(false);
-  const navigation = useNavigation<any>();
+
+  const navigation = useNavigation<FeedNavigationProps>();
 
   const displayImage = images && images[0];
+
+  const navigateToComments = () => {
+    navigation.navigate('Comments', {postId: id});
+  };
 
   return (
     <View style={styles.container}>
@@ -98,7 +104,9 @@ export const FeedsPost: React.FC<FeedPostProps> = ({
         <Pressable onPress={() => setIsDescripExpanded(!isDescripExpanded)}>
           <Text style={styles.mt}>{isDescripExpanded ? 'Less' : 'More'}</Text>
         </Pressable>
-
+        <Text onPress={navigateToComments}>
+          View all {comments.length} comments
+        </Text>
         {comments.map(item => (
           <Comments {...item} key={item.id} />
         ))}

@@ -1,8 +1,10 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import {Button} from '../../components/Button';
 import {styles} from './styles';
+import {ProfileNavigationProps} from '../../navigation/interface';
 
 interface IProfile {
   imageURI?: string;
@@ -11,6 +13,7 @@ interface IProfile {
 export const ProfileHeader = ({
   imageURI = 'https://randomuser.me/api/portraits/women/25.jpg',
 }: IProfile) => {
+  const navigation = useNavigation<ProfileNavigationProps>();
   return (
     <View style={styles.profileContainer}>
       <View style={styles.headerRow}>
@@ -37,8 +40,11 @@ export const ProfileHeader = ({
         Perspiciatis, sequi?
       </Text>
       <View style={styles.buttonWrapper}>
-        <Button text="Edit Profile" />
-        <Button text="Share Profile" />
+        <Button
+          text="Edit Profile"
+          onPress={() => navigation.navigate('Edit Profile')}
+        />
+        <Button text="Return home" onPress={() => navigation.goBack()} />
       </View>
     </View>
   );
