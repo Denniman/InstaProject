@@ -2,13 +2,10 @@ import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import {Button} from '../../components/Button';
 import {styles} from './styles';
-import {ProfileNavigationProps} from '../../navigation/interface';
-
-interface IProfile {
-  imageURI?: string;
-}
+import {Button} from '../../components/Button';
+import {IProfile} from './ProfileScreen.interface';
+import {ProfileNavigationProps} from '../../typings';
 
 export const ProfileHeader = ({
   imageURI = 'https://randomuser.me/api/portraits/women/25.jpg',

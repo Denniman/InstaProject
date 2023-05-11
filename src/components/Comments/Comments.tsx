@@ -3,7 +3,7 @@ import {View, Text, Image, Pressable} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import {styles} from './styles';
-import {IComments} from './../../types/models';
+import {IComments} from '../../typings';
 import {fontsColor} from '../../theme';
 
 interface ICommentsProps extends IComments {

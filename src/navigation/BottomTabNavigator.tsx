@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {PostUploadScreen} from '../screens';
-import {IBottomTabsNavigator} from './interface';
+import {IBottomTabsNavigator} from '../typings';
 import HomeStackNavigator from './HomeStackNavigator';
 import ProfileStackNavigator from './ProfileStackNavigator';
 
@@ -51,7 +51,7 @@ const BottomTabNavigator = () => {
       />
 
       <Tabs.Screen
-        name="My Profile"
+        name="MyProfile"
         component={ProfileStackNavigator}
         options={{
           headerShown: false,

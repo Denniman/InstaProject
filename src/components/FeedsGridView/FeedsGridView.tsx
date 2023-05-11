@@ -22,8 +22,8 @@ export const FeedsGridView = ({data, ListHeaderComponent}: IFeedGridView) => {
       renderItem={({item}) => <FeedGridImage uri={item.images[0]} />}
       showsVerticalScrollIndicator={false}
       numColumns={3}
-      ListHeaderComponent={ListHeaderComponent}
       style={{marginHorizontal: -1}}
+      ListHeaderComponent={ListHeaderComponent}
     />
   );
 };
