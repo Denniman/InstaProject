@@ -2,9 +2,9 @@ import React from 'react';
 import {LinkingOptions, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import BottomTabNavigator from './BottomTabNavigator';
+import {RootNavigator} from '../types';
 import {CommentScreen} from '../screens';
-import {RootNavigator} from '../typings';
+import BottomTabNavigator from './BottomTabNavigator';
 
 const Stack = createNativeStackNavigator<RootNavigator>();
 

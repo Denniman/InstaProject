@@ -6,8 +6,9 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {PostUploadScreen} from '../screens';
-import {IBottomTabsNavigator} from '../typings';
+import {IBottomTabsNavigator} from '../types';
 import HomeStackNavigator from './HomeStackNavigator';
+import SearchTabNavigator from './SearchTabNavigator';
 import ProfileStackNavigator from './ProfileStackNavigator';
 
 const Tabs = createBottomTabNavigator<IBottomTabsNavigator>();
@@ -21,6 +22,16 @@ const BottomTabNavigator = () => {
           headerShown: false,
           tabBarIcon: ({size, color}) => (
             <MaterialIcons name="home-filled" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Search"
+        component={SearchTabNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({size, color}) => (
+            <MaterialIcons name="search" size={size} color={color} />
           ),
         }}
       />
