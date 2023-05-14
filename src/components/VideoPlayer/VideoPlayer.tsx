@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Pressable} from 'react-native';
+import {View, Pressable} from 'react-native';
 import Video from 'react-native-video';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {fontsColor} from '../../theme';
+import {makeUseStyles} from '../../helpers/makeUserStyles';
 
 interface IVideoProps {
   uri?: string;
@@ -12,6 +12,7 @@ interface IVideoProps {
 
 export const VideoPlayer = ({uri, paused}: IVideoProps) => {
   const [muted, setMuted] = useState(true);
+  const {styles} = useStyles();
 
   return (
     <View>
@@ -34,7 +35,7 @@ export const VideoPlayer = ({uri, paused}: IVideoProps) => {
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeUseStyles(({colors}) => ({
   video: {
     width: '100%',
     aspectRatio: 1,
@@ -45,6 +46,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     bottom: 10,
     position: 'absolute',
-    backgroundColor: fontsColor.black,
+    backgroundColor: colors.light.black,
   },
-});
+}));

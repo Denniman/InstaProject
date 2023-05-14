@@ -2,17 +2,17 @@ import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
-import {styles} from './styles';
 import {
   MyProfileRouteProps,
   UserProfileRouteProps,
   MyProfileNavigationProps,
   UserProfileNavigationProps,
-} from '../../typings';
+} from '../../types';
 import {userBio} from '../../config/userBio';
 import {ProfileHeader} from './ProfileHeader';
 
 import {FeedsGridView} from '../../components/FeedsGridView';
+import {makeUseStyles} from '../../helpers/makeUserStyles';
 
 export const ProfileScreen = () => {
   const route = useRoute<UserProfileRouteProps | MyProfileRouteProps>();
@@ -20,6 +20,8 @@ export const ProfileScreen = () => {
     MyProfileNavigationProps | UserProfileNavigationProps
   >();
   const id = route.params?.userId;
+
+  const {styles} = useStyles();
 
   useEffect(() => {
     navigation.setOptions({title: id});
@@ -31,3 +33,9 @@ export const ProfileScreen = () => {
     </View>
   );
 };
+
+const useStyles = makeUseStyles(() => ({
+  gridContainer: {
+    marginTop: 5,
+  },
+}));

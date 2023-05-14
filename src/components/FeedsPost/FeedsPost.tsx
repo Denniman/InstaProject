@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {View, Text, Image, Pressable} from 'react-native';
+import {View, Image, Pressable} from 'react-native';
+import {Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -13,12 +14,12 @@ import {Carousel} from '../Carousel';
 import {DoublePress} from '../../hooks';
 import {VideoPlayer} from '../VideoPlayer';
 
-import {fontWeight, fontsColor} from '../../theme';
-import {FeedNavigationProps, IFeedPost} from '../../typings';
+import {fontWeight, colors} from '../../theme';
+import {FeedNavigationProps, IFeedPost} from '../../types';
 
-interface FeedPostProps extends IFeedPost {
+type FeedPostProps = IFeedPost & {
   isVisible: boolean;
-}
+};
 
 export const FeedsPost: React.FC<FeedPostProps> = ({
   id,
@@ -83,7 +84,7 @@ export const FeedsPost: React.FC<FeedPostProps> = ({
               name={isLiked ? 'heart' : 'hearto'}
               size={24}
               style={styles.icon}
-              color={isLiked ? fontsColor.accent : fontsColor.black}
+              color={isLiked ? colors.light.accent : colors.light.black}
             />
           </Pressable>
 

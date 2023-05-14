@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import {View, Text, Image, Pressable} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import {styles} from './styles';
-import {IComments} from '../../typings';
-import {fontsColor} from '../../theme';
+import {IComments} from '../../types';
+import {makeUseStyles} from '../../helpers/makeUserStyles';
 
 interface ICommentsProps extends IComments {
   includeDetails?: boolean;
@@ -17,6 +16,7 @@ export const Comments = ({
   includeDetails,
 }: ICommentsProps) => {
   const [isLiked, setIsLiked] = useState(false);
+  const {styles, palette} = useStyles();
   return (
     <View style={styles.comments}>
       {avatar && <Image source={{uri: avatar}} style={styles.avatar} />}
@@ -36,9 +36,40 @@ export const Comments = ({
       <Pressable onPress={() => setIsLiked(!isLiked)} hitSlop={5}>
         <AntDesign
           name={isLiked ? 'heart' : 'hearto'}
-          color={isLiked ? fontsColor.accent : fontsColor.black}
+          color={isLiked ? palette.accent : palette.black}
         />
       </Pressable>
     </View>
   );
 };
+
+const useStyles = makeUseStyles(({fontWeight}) => ({
+  comments: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginBottom: 7,
+  },
+  commentsText: {
+    lineHeight: 18,
+  },
+  avatar: {
+    width: 50,
+    aspectRatio: 1,
+    borderRadius: 25,
+    marginRight: 7,
+  },
+  author: {
+    fontWeight: fontWeight.xBold,
+  },
+  commentReply: {
+    marginBottom: 7,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  commentReplyText: {
+    marginRight: 5,
+  },
+  middleColumn: {
+    flex: 1,
+  },
+}));

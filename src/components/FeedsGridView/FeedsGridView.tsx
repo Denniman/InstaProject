@@ -2,7 +2,7 @@
 import {FlatList} from 'react-native';
 import React, {ComponentType} from 'react';
 
-import {IPost} from '../../typings';
+import {IPost} from '../../types';
 
 import {FeedGridImage} from './FeedGridImage';
 

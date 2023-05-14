@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useEffect, useState, useRef} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Pressable} from 'react-native';
+import {Text} from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
   Camera,
@@ -10,7 +11,7 @@ import {
   CameraRecordingOptions,
 } from 'expo-camera';
 
-import {fontsColor} from '../../theme';
+import {makeUseStyles} from '../../helpers/makeUserStyles';
 
 const flashModes = [
   FlashMode.off,
@@ -33,6 +34,8 @@ export const PostUploadScreen = () => {
   const [isCameraReady, setIsCameraReady] = useState(false);
   const [cameraType, setCameraType] = useState(CameraType.back);
   const [hasPermissionn, setHasPermission] = useState<boolean | null>(null);
+
+  const {styles, colors} = useStyles();
 
   useEffect(() => {
     (async () => {
@@ -118,22 +121,22 @@ export const PostUploadScreen = () => {
         />
       )}
       <View style={[styles.buttonContainer, {top: 55}]}>
-        <MaterialIcons name="close" size={30} color={fontsColor.white} />
+        <MaterialIcons name="close" size={30} color={colors.light.white} />
         <Pressable onPress={toggleFlashMode}>
           <MaterialIcons
             name={flashModesIcon[flash]}
             size={30}
-            color={fontsColor.white}
+            color={colors.light.white}
           />
         </Pressable>
-        <MaterialIcons name="settings" size={30} color={fontsColor.white} />
+        <MaterialIcons name="settings" size={30} color={colors.light.white} />
       </View>
 
       <View style={[styles.buttonContainer, {bottom: 40}]}>
         <MaterialIcons
           name="photo-library"
           size={30}
-          color={fontsColor.white}
+          color={colors.light.white}
         />
 
         {isCameraReady && (
@@ -146,8 +149,8 @@ export const PostUploadScreen = () => {
                 styles.circle,
                 {
                   backgroundColor: isRecording
-                    ? fontsColor.accent
-                    : fontsColor.white,
+                    ? colors.light.accent
+                    : colors.light.white,
                 },
               ]}
             />
@@ -158,7 +161,7 @@ export const PostUploadScreen = () => {
           <MaterialIcons
             name="flip-camera-ios"
             size={30}
-            color={fontsColor.white}
+            color={colors.light.white}
           />
         </Pressable>
       </View>
@@ -166,11 +169,12 @@ export const PostUploadScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeUseStyles(({colors}) => ({
   wrapper: {
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
+    backgroundColor: colors.light.transparentBlack,
   },
   camera: {
     width: '100%',
@@ -182,11 +186,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     justifyContent: 'space-around',
-    backgroundColor: fontsColor.black,
   },
   circle: {
     width: 75,
     aspectRatio: 1,
     borderRadius: 75,
   },
-});
+}));

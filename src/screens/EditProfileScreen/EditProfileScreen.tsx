@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {Asset, launchImageLibrary} from 'react-native-image-picker';
-import {View, Text, Image, StyleSheet, Pressable} from 'react-native';
+import {View, Image, Pressable} from 'react-native';
+import {Text} from 'react-native-paper';
 import {useForm, Controller, SubmitHandler} from 'react-hook-form';
 
 import {userBio} from '../../config/userBio';
 
-import {fontsColor, fontWeight} from '../../theme';
 import {CustomInput} from '../../components';
+import {makeUseStyles} from '../../helpers/makeUserStyles';
 
 const REGEX_PATTERN =
   /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
@@ -34,6 +35,8 @@ export const EditProfileScreen = () => {
   });
 
   const [selectedPhoto, setSelectedPhoto] = useState<null | Asset>(null);
+
+  const {styles} = useStyles();
 
   const onSubmit: SubmitHandler<SubmitHandlerProps> = data => {
     console.warn('Submitted!!', data);
@@ -65,7 +68,7 @@ export const EditProfileScreen = () => {
           style={styles.avatar}
         />
         <Pressable onPress={onChangePhoto}>
-          <Text style={styles.changeProfileButton}>Change profile photo</Text>
+          <Text style={styles.changeProfileButton}>Edit picture</Text>
         </Pressable>
       </View>
 
@@ -155,7 +158,7 @@ export const EditProfileScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeUseStyles(({colors, fontWeight}) => ({
   container: {
     flex: 1,
     padding: 10,
@@ -165,9 +168,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   changeProfileButton: {
-    fontSize: 17,
+    fontSize: 15,
     fontWeight: fontWeight.bold,
-    color: fontsColor.MEDIUMSLATEBLUE_COLOR,
+    color: colors.light.MEDIUMSLATEBLUE_COLOR,
   },
   avatar: {
     width: 70,
@@ -183,6 +186,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     fontWeight: fontWeight.bold,
-    color: fontsColor.MEDIUMSLATEBLUE_COLOR,
+    color: colors.light.MEDIUMSLATEBLUE_COLOR,
   },
-});
+}));

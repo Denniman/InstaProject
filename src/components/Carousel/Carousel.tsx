@@ -9,8 +9,8 @@ import {
   useWindowDimensions,
 } from 'react-native';
 
-import {fontsColor} from '../../theme';
 import {DoublePress} from '../../hooks';
+import {makeUseStyles} from '../../helpers/makeUserStyles';
 
 interface ICoursel {
   images: string[];
@@ -19,6 +19,8 @@ interface ICoursel {
 export const Carousel = ({images, onDoublePress}: ICoursel) => {
   const {width} = useWindowDimensions();
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>();
+
+  const {colors} = useStyles();
 
   const onViewableItemsChanged = useRef(
     ({viewableItems}: {viewableItems: ViewToken[]}) => {
@@ -71,8 +73,8 @@ export const Carousel = ({images, onDoublePress}: ICoursel) => {
               marginHorizontal: 4,
               backgroundColor:
                 activeImageIndex === index
-                  ? fontsColor.MEDIUMSLATEBLUE_COLOR
-                  : fontsColor.gray,
+                  ? colors.light.MEDIUMSLATEBLUE_COLOR
+                  : colors.light.gray,
             }}
           />
         ))}
@@ -80,3 +82,5 @@ export const Carousel = ({images, onDoublePress}: ICoursel) => {
     </View>
   );
 };
+
+const useStyles = makeUseStyles(() => ({}));

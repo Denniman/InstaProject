@@ -1,15 +1,9 @@
 import React from 'react';
 import {FieldError} from 'react-hook-form';
-import {
-  View,
-  Text,
-  Platform,
-  TextInput,
-  StyleSheet,
-  TextInputProps,
-} from 'react-native';
+import {TextInput, Text} from 'react-native-paper';
+import {View, TextInputProps} from 'react-native';
 
-import {fontsColor, fontWeight} from '../../theme';
+import {makeUseStyles} from '../../helpers/makeUserStyles';
 
 interface ICustomInput extends TextInputProps {
   label: string;
@@ -28,6 +22,7 @@ export const CustomInput: React.FC<ICustomInput> = ({
   multiline,
   onChangeText,
 }) => {
+  const {styles, colors} = useStyles();
   return (
     <View style={styles.textInputContainer}>
       <Text style={styles.label}>{label}</Text>
@@ -38,6 +33,7 @@ export const CustomInput: React.FC<ICustomInput> = ({
           placeholder={placeholder}
           style={styles.input}
           multiline={multiline}
+          underlineColor={colors.light.gray}
         />
         {error && <Text style={styles.error}>{error?.message}</Text>}
       </View>
@@ -45,7 +41,7 @@ export const CustomInput: React.FC<ICustomInput> = ({
   );
 };
 
-const styles = StyleSheet.create({
+const useStyles = makeUseStyles(({colors, fontWeight}) => ({
   container: {
     flex: 1,
     padding: 10,
@@ -57,7 +53,7 @@ const styles = StyleSheet.create({
   changeProfileButton: {
     fontSize: 17,
     fontWeight: fontWeight.bold,
-    color: fontsColor.MEDIUMSLATEBLUE_COLOR,
+    color: colors.light.MEDIUMSLATEBLUE_COLOR,
   },
   textInputContainer: {
     flexDirection: 'row',
@@ -67,17 +63,16 @@ const styles = StyleSheet.create({
     width: 100,
     fontSize: 16,
     alignSelf: 'flex-end',
-    fontWeight: fontWeight.bold,
   },
   input: {
-    borderBottomWidth: 1,
-    borderColor: fontsColor.BORDER_GRAY,
-    paddingVertical: Platform.OS === 'ios' ? 9 : 5,
+    maxHeight: 50,
+    padding: 0,
+    backgroundColor: 'transparent',
   },
   error: {
-    color: fontsColor.RED_COLOR,
+    color: colors.light.RED_COLOR,
   },
   errorWrapper: {
     flex: 1,
   },
-});
+}));

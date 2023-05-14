@@ -1,16 +1,18 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Image} from 'react-native';
+import {Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 
-import {styles} from './styles';
 import {Button} from '../../components/Button';
 import {IProfile} from './ProfileScreen.interface';
-import {ProfileNavigationProps} from '../../typings';
+import {ProfileNavigationProps} from '../../types';
+import {makeUseStyles} from '../../helpers/makeUserStyles';
 
 export const ProfileHeader = ({
   imageURI = 'https://randomuser.me/api/portraits/women/25.jpg',
 }: IProfile) => {
   const navigation = useNavigation<ProfileNavigationProps>();
+  const {styles} = useStyles();
   return (
     <View style={styles.profileContainer}>
       <View style={styles.headerRow}>
@@ -46,3 +48,42 @@ export const ProfileHeader = ({
     </View>
   );
 };
+
+const useStyles = makeUseStyles(({fontWeight}) => ({
+  profileContainer: {
+    padding: 10,
+  },
+  statsContainer: {
+    alignItems: 'center',
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
+    justifyContent: 'space-between',
+  },
+  avatar: {
+    width: 80,
+    aspectRatio: 1,
+    borderRadius: 50,
+  },
+  statsHeader: {
+    fontSize: 15,
+    fontWeight: fontWeight.bold,
+  },
+  name: {
+    fontSize: 17,
+    fontWeight: fontWeight.bold,
+  },
+  bio: {
+    fontSize: 17,
+  },
+  buttonWrapper: {
+    marginVertical: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  gridContainer: {
+    marginTop: 5,
+  },
+}));
